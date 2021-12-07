@@ -19,6 +19,12 @@ class Player{
         noStroke();
         rect(this.x, this.y, this.sizeX, this.sizeY);
         this.x += this.dir;
+        if(this.x < 0){
+            this.x = 0;
+        }
+        if(this.x+this.sizeX > width){
+            this.x = width-this.sizeX;
+        }
     }
     
     input(){
