@@ -5,7 +5,7 @@ class Buttons{
         this.cost1 = 10;
         this.cost2 = 10;
         this.cost3 = 10;
-        this.cost4 = 100000;
+        this.cost4 = 1000000;
         this.hej = true;
     }
     
