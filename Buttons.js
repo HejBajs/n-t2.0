@@ -11,7 +11,7 @@ class Buttons{
     }
     
     update(){
-        if(this.hej = false){
+        if(this.hej == false){
             this.d = "max"
         }
         fill(this.c);
