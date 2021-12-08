@@ -5,6 +5,9 @@ class Falling{
         this.c = color(random(255), random(255), random(255));
         this.size = (30);
         this.speed = 5;
+        this.specint = random(1, 50);
+        this.special = false;
+        this.specialRand();
     }
     
     update(){
@@ -19,4 +22,12 @@ class Falling{
         this.y += this.speed;
     }
     
+    specialRand(){
+        if(this.specint == 3){
+            this.special = true;
+            this.size+=10;
+            this.c = color(255,215,0);
+            this.speed++;
+        }
+    }
 }
