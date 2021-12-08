@@ -68,7 +68,7 @@ function mousePressed(){
     if(isMouseInside(width-210, 10, 200, 50) && buttons.hej == true){
         if(score >= buttons.cost4){
             score -= buttons.cost4;
-            buttons.cost4 = "Max";
+            buttons.cost4 = 10000000000000000000000000000000000000;
             player.speed += 5;
             buttons.hej = false;
         }
