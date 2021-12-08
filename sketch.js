@@ -43,7 +43,7 @@ function mousePressed(){
     if(isMouseInside(10, 10, 140, 50)){
         if(score >= buttons.cost1){
             score -= buttons.cost1;
-            buttons.cost1+=int(buttons.cost1/3);;
+            buttons.cost1+=int(buttons.cost1/4);;
             fallings.push(new Falling());
         }
     }
