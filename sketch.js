@@ -18,7 +18,11 @@ function draw() {
         fallings[i].update();
         if(collide(player.x, player.y, player.sizeX, player.sizeY, fallings[i].x, fallings[i].y)){
             fallings[i] = new Falling();
-            score+=buttons.plus;
+            if(fallings[i].special==true){
+                score+=(buttons.plus*100);
+            }else{
+                score+=buttons.plus;
+            }
         }
         if(fallings[i].y > (windowHeight+50)){
             fallings[i] = new Falling();
