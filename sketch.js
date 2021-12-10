@@ -3,13 +3,14 @@ let player;
 var start, current;
 var score = 0;
 let buttons;
+let chance = 1;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     buttons = new Buttons();
     fallings.push(new Falling());
     player = new Player();
-}   
+}
 
 function draw() {
     background(20, 20, 20);
@@ -47,15 +48,15 @@ function mousePressed(){
     if(isMouseInside(10, 10, 140, 50)){
         if(score >= buttons.cost1){
             score -= buttons.cost1;
-            buttons.cost1+=int(buttons.cost1/4);;
+            buttons.cost1*=1.2;
             fallings.push(new Falling());
         }
     }
     if(isMouseInside(200, 10, 140, 50)){
         if(score >= buttons.cost2){
             score -= buttons.cost2;
-            buttons.cost2+=int(buttons.cost2/3);
-            buttons.plus+=int(buttons.plus/4);              
+            buttons.cost2*=1.3;
+            buttons.plus*=1.25;              
         }
     }
     if(isMouseInside(390, 10, 140, 50)){
@@ -71,6 +72,17 @@ function mousePressed(){
             buttons.cost4 = 10000000000000000000000000000000000000;
             player.speed += 5;
             buttons.hej = false;
+        }
+    }
+    
+    if(isMouseInside(width-420, 10, 200, 50)&& buttons.hej2 == true){
+        if(score >= buttons.cost5){
+            score -= buttons.cost5;
+            buttons.cost5 *= 2;
+            chance++;
+            if(chance == 50){
+                buttons.hej2 = false;
+            }
         }
     }
 }
