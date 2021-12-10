@@ -5,7 +5,7 @@ class Falling{
         this.c = color(random(255), random(255), random(255));
         this.size = (30);
         this.speed = 5;
-        this.specint = random(1, 50);
+        this.specint = int(random(1, 100));
         this.special = false;
         this.specialRand();
     }
@@ -23,11 +23,13 @@ class Falling{
     }
     
     specialRand(){
-        if(this.specint == 3){
-            this.special = true;
-            this.size+=10;
-            this.c = color(255,215,0);
-            this.speed++;
+        for(var i = 1; i < chance+1; i++){
+            if(this.specint == i){
+                this.special = true;
+                this.size+=10;
+                this.c = color(255,215,0);
+                this.speed++;
+            }
         }
     }
 }
