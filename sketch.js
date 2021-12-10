@@ -109,7 +109,7 @@ function nFormatter(num, digits) {
         { value: 1e18, symbol: "P" },
         { value: 1e21, symbol: "E" },
         { value: 1e24, symbol: "G" },
-        { value: 1e24, symbol: "R" }
+        { value: 1e27, symbol: "R" }
     ];
     const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
     var item = lookup.slice().reverse().find(function(item) {
