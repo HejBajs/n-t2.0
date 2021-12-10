@@ -79,8 +79,8 @@ function mousePressed(){
         if(score >= buttons.cost5){
             score -= buttons.cost5;
             buttons.cost5 *= 2;
-            chance++;
-            if(chance == 50){
+            chance+=1;
+            if(chance == 500){
                 buttons.hej2 = false;
             }
         }
