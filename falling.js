@@ -5,7 +5,7 @@ class Falling{
         this.c = color(random(255), random(255), random(255));
         this.size = (30);
         this.speed = 5;
-        this.specint = int(random(1, 100));
+        this.specint = int(random(1, 1000));
         this.special = false;
         this.specialRand();
     }
