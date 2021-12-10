@@ -4,6 +4,7 @@ var start, current;
 var score = 0;
 let buttons;
 let chance = 1;
+let v = "V1.0"
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -34,6 +35,7 @@ function draw() {
     fill(255);
     textSize(50);
     text("$"+nFormatter(score, 1), width/2, 50);
+    text(v, width-120, height-15);
 }
 
 function collide(x, y, w, h, x2, y2){
