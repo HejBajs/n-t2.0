@@ -36,7 +36,7 @@ class Buttons{
         text("money+ $"+this.nFormatter(this.cost2), 210, 40);
         text("size+ $"+this.nFormatter(this.cost3), 400, 40);
         text("speed+ $"+this.d, width-185, 40);
-        text("special " + chance + "% " + this.d2, width-395, 40);
+        text("special " + chance/10 + "% " + this.d2, width-395, 40);
     }
     nFormatter(num) {
       const lookup = [
