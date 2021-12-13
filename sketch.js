@@ -20,7 +20,7 @@ function draw() {
         fallings[i].update();
         if(collide(player.x, player.y, player.sizeX, player.sizeY, fallings[i].x, fallings[i].y)){
             if(fallings[i].special==true){
-                score+=(buttons.plus*1000);
+                score+=(buttons.plus*200);
             }else{
                 score+=buttons.plus;
             }
