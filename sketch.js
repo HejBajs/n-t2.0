@@ -1,10 +1,9 @@
 let fallings = [];
 let player;
-var start, current;
 var score = 0;
 let buttons;
 let chance = 1;
-let v = "V1.3"
+let v = "V1.4"
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -14,8 +13,7 @@ function setup() {
 }
 
 function draw() {
-    background(20, 20, 20);
-    
+    background(20, 20, 20);    
     for(var i = 0; i < fallings.length; i++){
         fallings[i].update();
         if(collide(player.x, player.y, player.sizeX, player.sizeY, fallings[i].x, fallings[i].y)){
@@ -36,6 +34,14 @@ function draw() {
     textSize(50);
     text("$"+nFormatter(score, 1), width/2, 50);
     text(v, width-120, height-15);
+    
+    if(keyIsDown(UP_ARROW)){
+        save1();   
+    }
+
+    if(keyIsDown(DOWN_ARROW)){
+        load1();
+    }
 }
 
 function collide(x, y, w, h, x2, y2){
@@ -87,6 +93,9 @@ function mousePressed(){
             }
         }
     }
+    
+    if(isMouseInside(10, height-60, 140, 50)){save1();}
+    if(isMouseInside(200, height-60, 140, 50)){load1();}
 }
 
     
@@ -120,4 +129,31 @@ function nFormatter(num, digits) {
         return num >= item.value;
     });
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
+}
+
+function save1(){
+    const dataToStore = {player: player, fallings: fallings.length, buttons: buttons, score: score, chance: chance};
+    localStorage.setItem("storedData", JSON.stringify(dataToStore));
+}
+
+function load1(){
+    const data = JSON.parse(localStorage.getItem("storedData"));
+    player.sizeX = data.player.sizeX;
+    player.speed = data.player.speed;
+    player.x = data.player.x;
+    player.y = data.player.y;
+    fallings = [];
+    for(var i = 0; i < data.fallings; i++){
+        fallings.push(new Falling());
+    }
+    buttons.plus = data.buttons.plus;
+    buttons.cost1 = data.buttons.cost1;
+    buttons.cost2 = data.buttons.cost2;
+    buttons.cost3 = data.buttons.cost3;
+    buttons.cost4 = data.buttons.cost4;
+    buttons.cost5 = data.buttons.cost5;
+    buttons.hej = data.buttons.hej;
+    buttons.hej2 = data.buttons.hej2;
+    score = data.score;
+    chance = data.chance;
 }
