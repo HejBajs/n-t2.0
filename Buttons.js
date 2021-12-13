@@ -41,7 +41,7 @@ class Buttons{
         text("special " + chance/10 + "% " + this.d2, width-395, 40);
         textSize(40);
         text("save", 35, height-25);
-        text("load", 225, height-25);
+        text("load", 232, height-25);
     }
     nFormatter(num) {
       const lookup = [
