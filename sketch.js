@@ -3,7 +3,7 @@ let player;
 var score = 0;
 let buttons;
 let chance = 1;
-let v = "V1.4"
+let v = "V1.5"
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
