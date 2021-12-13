@@ -30,6 +30,8 @@ class Buttons{
         rect(390, 10, 140, 50, 10);
         rect(width-210, 10, 200, 50, 10);
         rect(width-420, 10, 200, 50, 10);
+        rect(10, height-60, 140, 50, 10);
+        rect(200, height-60, 140, 50, 10);
         fill(255);
         textSize(20);
         text("Balls+ $"+this.nFormatter(this.cost1), 20, 40);
@@ -37,6 +39,9 @@ class Buttons{
         text("size+ $"+this.nFormatter(this.cost3), 400, 40);
         text("speed+ $"+this.d, width-185, 40);
         text("special " + chance/10 + "% " + this.d2, width-395, 40);
+        textSize(40);
+        text("save", 35, height-25);
+        text("load", 225, height-25);
     }
     nFormatter(num) {
       const lookup = [
