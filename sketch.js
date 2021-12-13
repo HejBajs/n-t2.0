@@ -4,7 +4,7 @@ var start, current;
 var score = 0;
 let buttons;
 let chance = 1;
-let v = "V1.2"
+let v = "V1.3"
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -104,12 +104,16 @@ function nFormatter(num, digits) {
         { value: 1e3, symbol: "k" },
         { value: 1e6, symbol: "M" },
         { value: 1e9, symbol: "B" },
-        { value: 1e12, symbol: "T" },
-        { value: 1e15, symbol: "Q" },
-        { value: 1e18, symbol: "P" },
-        { value: 1e21, symbol: "E" },
-        { value: 1e24, symbol: "G" },
-        { value: 1e27, symbol: "R" }
+        { value: 1e12, symbol: "t" },
+        { value: 1e15, symbol: "q" },
+        { value: 1e18, symbol: "Q" },
+        { value: 1e21, symbol: "s" },
+        { value: 1e24, symbol: "S" },
+        { value: 1e27, symbol: "o" },
+        { value: 1e30, symbol: "n" },
+        { value: 1e33, symbol: "d" },
+        { value: 1e36, symbol: "U" },
+        { value: 1e39, symbol: "D" }
     ];
     const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
     var item = lookup.slice().reverse().find(function(item) {
