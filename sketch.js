@@ -16,7 +16,7 @@ function draw() {
     background(20, 20, 20);    
     for(var i = 0; i < fallings.length; i++){
         fallings[i].update();
-        if(collide(player.x, player.y, player.sizeX, player.sizeY, fallings[i].x, fallings[i].y)){
+        if(collide(player.x, player.y, player.sizeX, player.sizeY, fallings[i].x, fallings[i].y-15)){
             if(fallings[i].special==true){
                 score+=(buttons.plus*200);
             }else{
