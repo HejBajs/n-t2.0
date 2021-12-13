@@ -34,14 +34,6 @@ function draw() {
     textSize(50);
     text("$"+nFormatter(score, 1), width/2, 50);
     text(v, width-120, height-15);
-    
-    if(keyIsDown(UP_ARROW)){
-        save1();   
-    }
-
-    if(keyIsDown(DOWN_ARROW)){
-        load1();
-    }
 }
 
 function collide(x, y, w, h, x2, y2){
