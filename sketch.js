@@ -4,7 +4,7 @@ var start, current;
 var score = 0;
 let buttons;
 let chance = 1;
-let v = "V1.1"
+let v = "V1.2"
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -19,12 +19,12 @@ function draw() {
     for(var i = 0; i < fallings.length; i++){
         fallings[i].update();
         if(collide(player.x, player.y, player.sizeX, player.sizeY, fallings[i].x, fallings[i].y)){
-            fallings[i] = new Falling();
             if(fallings[i].special==true){
                 score+=(buttons.plus*1000);
             }else{
                 score+=buttons.plus;
             }
+            fallings[i] = new Falling();
         }
         if(fallings[i].y > (windowHeight+50)){
             fallings[i] = new Falling();
