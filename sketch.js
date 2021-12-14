@@ -3,7 +3,7 @@ let player;
 var score = 0;
 let buttons;
 let chance = 1;
-let v = "V1.6"
+let v = "V1.7"
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -114,7 +114,17 @@ function nFormatter(num, digits) {
         { value: 1e30, symbol: "n" },
         { value: 1e33, symbol: "d" },
         { value: 1e36, symbol: "U" },
-        { value: 1e39, symbol: "D" }
+        { value: 1e39, symbol: "D" },
+        { value: 1e42, symbol: "T" },
+        { value: 1e45, symbol: "Qt" },
+        { value: 1e48, symbol: "Qd" },
+        { value: 1e51, symbol: "Sd" },
+        { value: 1e54, symbol: "St" },
+        { value: 1e57, symbol: "O" },
+        { value: 1e60, symbol: "N" },
+        { value: 1e63, symbol: "v" },
+        { value: 1e66, symbol: "c" },
+        { value: 1e69, symbol: "Sug min balle Corre" }
     ];
     const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
     var item = lookup.slice().reverse().find(function(item) {
