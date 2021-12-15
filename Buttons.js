@@ -73,7 +73,7 @@ class Buttons{
         text("Balls+ $" + this.nFormatter(this.cost1), 55, 77);
         text("money+ $" + this.nFormatter(this.cost2), 55+(290*1), 77);
         text("size+ $" + this.nFormatter(this.cost3), 55+(290*2), 77);
-        text("special " + chance/10 + " $" + this.d2, 55+(290*3), 77);
+        text("special " + chance/10 + "% $" + this.d2, 55+(290*3), 77);
         textSize(60);
         text("save", 95, height-55);
         text("load", 100+(290*3), height-50);
