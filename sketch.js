@@ -217,6 +217,24 @@ function load1(){
         chance = data.chance;
         rebirthScore = data.rebirthScore
     }catch{
-        print("error loading");
+        const data = JSON.parse(localStorage.getItem("storedData"));
+        player.sizeX = data.player.sizeX;
+        player.speed = data.player.speed;
+        player.x = data.player.x;
+        player.y = data.player.y;
+        fallings = [];
+        for(var i = 0; i < data.fallings; i++){
+            fallings.push(new Falling());
+        }
+        buttons.plus = data.buttons.plus;
+        buttons.cost1 = data.buttons.cost1;
+        buttons.cost2 = data.buttons.cost2;
+        buttons.cost3 = data.buttons.cost3;
+        buttons.cost4 = data.buttons.cost4;
+        buttons.cost5 = data.buttons.cost5;
+        buttons.hej = data.buttons.hej;
+        buttons.hej2 = data.buttons.hej2;
+        score = data.score;
+        chance = data.chance;
     }
 }
