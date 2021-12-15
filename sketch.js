@@ -217,9 +217,9 @@ function load1(){
         
         save1();
         
-        const data = JSON.parse(localStorage.getItem("storedData"));
-        buttons.cost6 = data.buttons.cost6;
-        rebirthScore = data.rebirthScore
+        const data1 = JSON.parse(localStorage.getItem("storedData"));
+        buttons.cost6 = data1.buttons.cost6;
+        rebirthScore = data1.rebirthScore
     }catch{
         print("error loading");
     }
