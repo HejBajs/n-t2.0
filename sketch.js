@@ -214,12 +214,13 @@ function load1(){
         buttons.hej2 = data.buttons.hej2;
         score = data.score;
         chance = data.chance;
-        
-        save1();
-        
-        const data1 = JSON.parse(localStorage.getItem("storedData"));
-        buttons.cost6 = data1.buttons.cost6;
-        rebirthScore = data1.rebirthScore
+        try{
+            buttons.cost6 = data.buttons.cost6;
+            rebirthScore = data.rebirthScore;
+        }catch{
+            buttons.cost6 = 1000000000000000000000;
+            rebirthScore = 1;
+        }
     }catch{
         print("error loading");
     }
