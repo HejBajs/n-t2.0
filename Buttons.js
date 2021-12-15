@@ -7,15 +7,19 @@ class Buttons{
         this.cost3 = 10;
         this.cost4 = 1000000;
         this.cost5 = 1000000;
+        this.cost6 = 1000000000000000000000;
         this.hej = true;
         this.hej2 = true;
         this.d = this.nFormatter(this.cost4);
         this.d2 = this.nFormatter(this.cost5);
+        this.shopIs = false;
     }
     
     update(){
         if(this.hej == false){
             this.d = "max";
+        } else{
+            this.d = this.nFormatter(this.cost4);
         }
         
         if(this.hej2 == false){
@@ -23,26 +27,58 @@ class Buttons{
         } else{
             this.d2 = this.nFormatter(this.cost5);
         }
+        
+        this.shop();
+    }
+    
+    shop(){
+        if(this.shopIs == true){
+            noStroke();
+            fill(55);
+            rect(25, 25, width-50, height-50, 25);
+            fill(this.c);
+            rect(35, 35, 250, 70, 10);
+            rect(325, 35, 250, 70, 10);
+            rect(width/2+20, 35, 250, 70, 10);
+            rect(width-285, 35, 250, 70, 10);
+            rect(35, height-105, 250, 70, 10);
+            rect(width-285, height-105, 250, 70, 10);
+            this.t();
+            push();
+            fill(this.c);
+            rectMode(CENTER);
+            rect(width/2, height/2, 200, 200, 20);
+            rect(width/2, height-70, 250, 70, 10);
+            fill(255);
+            textAlign(CENTER);
+            textSize(30);
+            text("speed+ $" + this.d, width/2, height-62);
+            textSize(45);
+            text("rebirth", width/2, height/2-30);
+            text("$" + this.nFormatter(this.cost6), width/2, height/2+30);
+            pop();
+        }
         fill(this.c);
+        rect(width-40, 5, 35, 35, 3);
         noStroke();
-        rect(10, 10, 140, 50, 10);
-        rect(200, 10, 140, 50, 10);
-        rect(390, 10, 140, 50, 10);
-        rect(width-210, 10, 200, 50, 10);
-        rect(width-420, 10, 200, 50, 10);
-        rect(10, height-60, 140, 50, 10);
-        rect(200, height-60, 140, 50, 10);
         fill(255);
         textSize(20);
-        text("Balls+ $"+this.nFormatter(this.cost1), 20, 40);
-        text("money+ $"+this.nFormatter(this.cost2), 210, 40);
-        text("size+ $"+this.nFormatter(this.cost3), 400, 40);
-        text("speed+ $"+this.d, width-185, 40);
-        text("special " + chance/10 + "% " + this.d2, width-395, 40);
-        textSize(40);
-        text("save", 35, height-25);
-        text("load", 232, height-25);
+        text("$", width-28,28);
     }
+    
+    t(){
+        noStroke();
+        fill(255);
+        textSize(30);
+        text("Balls+ $" + this.nFormatter(this.cost1), 55, 77);
+        text("money+ $" + this.nFormatter(this.cost2), 55+(290*1), 77);
+        text("size+ $" + this.nFormatter(this.cost3), 55+(290*2), 77);
+        text("special " + chance/10 + " $" + this.d2, 55+(290*3), 77);
+        textSize(60);
+        text("save", 95, height-55);
+        text("load", 100+(290*3), height-50);
+    }
+    
     nFormatter(num) {
       const lookup = [
         { value: 1, symbol: "" },
@@ -76,4 +112,6 @@ class Buttons{
       });
       return item ? (num / item.value).toFixed(1).replace(rx, "$1") + item.symbol : "0";
     }
+    
+    
 }
