@@ -214,7 +214,7 @@ function load1(){
         buttons.hej2 = data.buttons.hej2;
         score = data.score;
         chance = data.chance;
-        if(data.rebirthScore === unidentified){
+        if(data.rebirthScore === undefined){
             buttons.cost6 = 1000000000000000000000;
             rebirthScore = 1;
         }else{
