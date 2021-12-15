@@ -78,7 +78,7 @@ function mousePressed(){
     
     if(isMouseInside(325, 35, 250, 70) && buttons.shopIs == true){
         if(score >= buttons.cost2){
-            buttons.plus*=1.2
+            buttons.plus*=1.25
             score-=buttons.cost2;
             buttons.cost2*=1.3
         }
