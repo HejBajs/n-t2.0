@@ -3,7 +3,8 @@ let player;
 var score = 0;
 let buttons;
 let chance = 1;
-let v = "V1.7"
+let v = "V1.8"
+var rebirthScore = 1;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -18,9 +19,9 @@ function draw() {
         fallings[i].update();
         if(collide(player.x, player.y, player.sizeX, player.sizeY, fallings[i].x, fallings[i].y-15)){
             if(fallings[i].special==true){
-                score+=(buttons.plus*200);
+                score+=((buttons.plus*rebirthScore)*200);
             }else{
-                score+=buttons.plus;
+                score+=(buttons.plus*rebirthScore);
             }
             fallings[i] = new Falling();
         }
@@ -28,8 +29,22 @@ function draw() {
             fallings[i] = new Falling();
         }
     }
+    showScore();
     player.update();
     buttons.update();
+}
+
+function keyTyped(){
+    if(key === "e"){
+        if(buttons.shopIs == false){
+            buttons.shopIs = true;
+        }else{
+            buttons.shopIs = false;
+        }
+    }
+}
+
+function showScore(){
     fill(255);
     textSize(50);
     text("$"+nFormatter(score, 1), width/2, 50);
@@ -45,52 +60,92 @@ function collide(x, y, w, h, x2, y2){
 }
 
 function mousePressed(){
-    if(isMouseInside(10, 10, 140, 50)){
-        if(score >= buttons.cost1){
-            score -= buttons.cost1;
-            buttons.cost1*=1.2;
-            fallings.push(new Falling());
-        }
-    }
-    if(isMouseInside(200, 10, 140, 50)){
-        if(score >= buttons.cost2){
-            score -= buttons.cost2;
-            buttons.cost2*=1.3;
-            buttons.plus*=1.25;              
-        }
-    }
-    if(isMouseInside(390, 10, 140, 50)){
-        if(score >= buttons.cost3){
-            score -= buttons.cost3;
-            buttons.cost3*=2;
-            player.sizeX+=10;
-        }
-    }
-    if(isMouseInside(width-210, 10, 200, 50) && buttons.hej == true){
-        if(score >= buttons.cost4){
-            score -= buttons.cost4;
-            buttons.cost4 = 10000000000000000000000000000000000000;
-            player.speed += 5;
-            buttons.hej = false;
+    if(isMouseInside(width-40, 5, 35, 35)){
+        if(buttons.shopIs == false){
+            buttons.shopIs = true;
+        }else{
+            buttons.shopIs = false;
         }
     }
     
-    if(isMouseInside(width-420, 10, 200, 50)&& buttons.hej2 == true){
+    if(isMouseInside(35, 35, 250, 70) && buttons.shopIs == true){
+        if(score >= buttons.cost1){
+            fallings.push(new Falling());
+            score-=buttons.cost1;
+            buttons.cost1*=1.2
+        }
+    }
+    
+    if(isMouseInside(325, 35, 250, 70) && buttons.shopIs == true){
+        if(score >= buttons.cost2){
+            buttons.plus*=1.2
+            score-=buttons.cost2;
+            buttons.cost2*=1.35
+        }
+    }
+    
+    if(isMouseInside(width/2+20, 35, 250, 70) && buttons.shopIs == true){
+        if(score >= buttons.cost3){
+            player.sizeX+=5;
+            score-=buttons.cost3;
+            buttons.cost3*=2;
+        }
+    }
+    
+    if(isMouseInside(width-285, 35, 250, 70) && buttons.shopIs == true && buttons.hej2 == true){
         if(score >= buttons.cost5){
-            score -= buttons.cost5;
-            buttons.cost5 *= 2;
             chance+=1;
-            if(chance == 500){
+            score-=buttons.cost5;
+            buttons.cost5*=2;
+            if(chance >= 50){
                 buttons.hej2 = false;
             }
         }
     }
     
-    if(isMouseInside(10, height-60, 140, 50)){save1();}
-    if(isMouseInside(200, height-60, 140, 50)){load1();}
+    if(isMouseInside((width/2)-(250/2), (height-70)-(70/2), 250, 70) && buttons.shopIs == true && buttons.hej == true){
+        if(score >= buttons.cost4){
+            player.speed+=3;
+            score-=buttons.cost4;
+            buttons.cost4*=1000;
+            if(player.speed >= 16){
+                buttons.hej = false;
+            }
+            
+        }
+    }
+    
+    if(isMouseInside(35, height-105, 250, 70) && buttons.shopIs == true){save1()}
+    if(isMouseInside(width-285, height-105, 250, 70) && buttons.shopIs == true){load1()}
+    
+    if(isMouseInside((width/2)-100, (height/2)-100, 200, 200) && buttons.shopIs == true){
+        rebirth();
+    }
 }
 
-    
+function rebirth(){
+    if(score >= buttons.cost6){
+        score-=buttons.cost6;
+        buttons.cost6 *=10000000;
+        
+        score = 0;
+        fallings = [new Falling()];
+        player.speed = 10;
+        buttons.hej = true;
+        buttons.hej2 = true;
+        chance = 1;
+        buttons.plus = 10;
+        player.sizeX = 120;
+        buttons.cost1 = 10;
+        buttons.cost2 = 10;
+        buttons.cost3 = 10;
+        buttons.cost4 = 1000000;
+        buttons.cost5 = 1000000;
+        
+        rebirthScore++;
+    }
+}
+
 function isMouseInside(x, y, w, h){
     if(mouseX > x && mouseX < x+w && mouseY > y && mouseY < y + h){
         return true; 
@@ -134,7 +189,7 @@ function nFormatter(num, digits) {
 }
 
 function save1(){
-    const dataToStore = {player: player, fallings: fallings.length, buttons: buttons, score: score, chance: chance};
+    const dataToStore = {player: player, fallings: fallings.length, buttons: buttons, score: score, chance: chance, rebirthScore: rebirthScore};
     localStorage.setItem("storedData", JSON.stringify(dataToStore));
 }
 
@@ -155,10 +210,12 @@ function load1(){
         buttons.cost3 = data.buttons.cost3;
         buttons.cost4 = data.buttons.cost4;
         buttons.cost5 = data.buttons.cost5;
+        buttons.cost6 = data.buttons.cost6;
         buttons.hej = data.buttons.hej;
         buttons.hej2 = data.buttons.hej2;
         score = data.score;
         chance = data.chance;
+        rebirthScore = data.rebirthScore
     }catch{
         print("error loading");
     }
