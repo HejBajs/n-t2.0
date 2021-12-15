@@ -214,12 +214,12 @@ function load1(){
         buttons.hej2 = data.buttons.hej2;
         score = data.score;
         chance = data.chance;
-        try{
-            buttons.cost6 = data.buttons.cost6;
-            rebirthScore = data.rebirthScore;
-        }catch{
+        if(typeof data.rebirthScore === "unidentified"){
             buttons.cost6 = 1000000000000000000000;
             rebirthScore = 1;
+        }else{
+            buttons.cost6 = data.buttons.cost6;
+            rebirthScore = data.rebirthScore;
         }
     }catch{
         print("error loading");
