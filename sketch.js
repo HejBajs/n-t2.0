@@ -80,7 +80,7 @@ function mousePressed(){
         if(score >= buttons.cost2){
             buttons.plus*=1.2
             score-=buttons.cost2;
-            buttons.cost2*=1.35
+            buttons.cost2*=1.3
         }
     }
     
