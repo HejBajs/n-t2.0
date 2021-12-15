@@ -142,7 +142,7 @@ function rebirth(){
         buttons.cost4 = 1000000;
         buttons.cost5 = 1000000;
         
-        rebirthScore++;
+        rebirthScore*=2;
     }
 }
 
