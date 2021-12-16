@@ -39,7 +39,7 @@ class Buttons{
             fill(this.c);
             rect(35, 35, 250, 70, 10);
             rect(325, 35, 250, 70, 10);
-            rect(width/2+20, 35, 250, 70, 10);
+            rect(width-570, 35, 250, 70, 10);
             rect(width-285, 35, 250, 70, 10);
             rect(35, height-105, 250, 70, 10);
             rect(width-285, height-105, 250, 70, 10);
@@ -72,11 +72,11 @@ class Buttons{
         textSize(30);
         text("Balls+ $" + this.nFormatter(this.cost1), 55, 77);
         text("money+ $" + this.nFormatter(this.cost2), 55+(290*1), 77);
-        text("size+ $" + this.nFormatter(this.cost3), 55+(290*2), 77);
-        text("special " + chance/10 + "% $" + this.d2, 55+(290*3), 77);
+        text("size+ $" + this.nFormatter(this.cost3), width-555, 77);
+        text("special " + chance/10 + "% $" + this.d2, width-279, 77);
         textSize(60);
         text("save", 95, height-55);
-        text("load", 100+(290*3), height-50);
+        text("load", width-220, height-50);
     }
     
     nFormatter(num) {
