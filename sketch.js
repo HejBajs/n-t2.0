@@ -3,8 +3,9 @@ let player;
 var score = 0;
 let buttons;
 let chance = 1;
-let v = "V1.8"
+let v = "V1.9"
 var rebirthScore = 1;
+let botmode = false;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -32,6 +33,10 @@ function draw() {
     showScore();
     player.update();
     buttons.update();
+    
+    if(botmode == true){
+        player.x += calcBotPos();
+    }
 }
 
 function keyTyped(){
@@ -224,4 +229,52 @@ function load1(){
     }catch{
         print("error loading");
     }
+}
+
+function botMode(){
+    if(botmode == false){
+        botmode = true;
+    }else{
+        botmode = false;
+    }
+}
+
+function calcBotPos(){
+    this.f;
+    this.f1 = [];
+    this.d = 0;
+    this.min;
+    for(var i = 0; i < fallings.length; i++){
+        if(fallings[i].special == true){
+            this.f1.push(fallings[i]);
+        }
+
+    }
+
+    if(this.f1.length == 0){
+        for(var i = 0; i < fallings.length; i++){
+            this.f1.push(fallings[i]);
+        }
+    }
+    if(this.f1.length>1){
+        this.m = dist(player.x, player.y, this.f1[0].x, this.f1[0].y);
+        for(var i = 0; i < this.f1.length; i++){
+            if(this.m > dist(player.x, player.y, this.f1[i].x, this.f1[i].y)){
+                this.f = this.f1[i];
+                this.m = dist(player.x, player.y, this.f1[i].x, this.f1[i].y);
+            }else if(this.f == undefined){
+                this.f = this.f1[0];
+            }
+        }
+    }else{
+        this.f = f1[0];
+    }
+    if(this.f.x >= player.x+(player.sizeX/3) && this.f.x < player.x+(player.sizeX)-(player.sizeX/3)){
+        dir=0;
+    }else if(this.f.x > player.x+(player.sizeX/2)){
+        this.d=player.speed;
+    }else if(this.f.x < player.x+(player.sizeX/2)){
+        this.d=(player.speed*-1);
+    }
+    return d;
 }
