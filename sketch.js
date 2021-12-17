@@ -6,6 +6,8 @@ let chance = 1;
 let v = "V1.9"
 var rebirthScore = 1;
 let botmode = false;
+let cheatCode = ['n', 'a', 'l', 'l', 'e', 'p', 'u'];
+let keyl = [];
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -37,6 +39,17 @@ function draw() {
     if(botmode == true){
         player.x += calcBotPos();
     }
+    
+    for(var i = 0; i < keyl.length; i++){
+        if(keyl[i] == cheatCode[0] && keyl[i+1] == cheatCode[1] && keyl[i+2] == cheatCode[2] && keyl[i+3] == cheatCode[3] && keyl[i+4] == cheatCode[4] && keyl[i+5] == cheatCode[5] && keyl[i+6] == cheatCode[6]){
+            botMode();
+            keyl = [];
+        }
+    }
+    
+    if(keyl[0]!='n'){
+        keyl = [];
+    }
 }
 
 function keyTyped(){
@@ -47,6 +60,7 @@ function keyTyped(){
             buttons.shopIs = false;
         }
     }
+    keyl.push(key);
 }
 
 function showScore(){
