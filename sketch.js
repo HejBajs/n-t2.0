@@ -28,7 +28,7 @@ document.onkeydown = function(e) {
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(1320, 596);
     buttons = new Buttons();
     fallings.push(new Falling());
     player = new Player();
