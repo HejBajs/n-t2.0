@@ -69,6 +69,7 @@ function draw() {
       
         if(keyl[i] == cheatCode2[0] && keyl[i+1] == cheatCode2[1]){
             bg = color(random(255), random(255), random(255))
+            player.c = color(random(255), random(255), random(255));
             keyl = [];
         }
     }
