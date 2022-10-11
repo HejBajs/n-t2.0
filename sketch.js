@@ -7,7 +7,9 @@ let v = "V1.9"
 var rebirthScore = 1;
 let botmode = false;
 let cheatCode = ['n', 'a', 'l', 'l', 'e', 'p', 'u'];
+let cheatCode2 = ['b', 'g'];
 let keyl = [];
+let bg;
 
 document.onkeydown = function(e) {
     if(event.keyCode == 123) {
@@ -29,13 +31,14 @@ document.onkeydown = function(e) {
 
 function setup() {
     createCanvas(screen.width, windowHeight);
+    bg = color(20, 20, 20)
     buttons = new Buttons();
     fallings.push(new Falling());
     player = new Player();
 }
 
 function draw() {
-    background(20, 20, 20);    
+    background(bg); 
     for(var i = 0; i < fallings.length; i++){
         fallings[i].update();
         if(collide(player.x, player.y, player.sizeX, player.sizeY, fallings[i].x, fallings[i].y-15)){
@@ -63,9 +66,14 @@ function draw() {
             botMode();
             keyl = [];
         }
+      
+        if(keyl[i] == cheatCode2[0] && keyl[i+1] == cheatCode2[1]){
+            bg = color(random(255), random(255), random(255))
+            keyl = [];
+        }
     }
     
-    if(keyl[0]!='n'){
+    if(keyl[0]!='b' && keyl[0]!='n'){
         keyl = [];
     }
 }
