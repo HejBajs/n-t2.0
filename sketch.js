@@ -60,7 +60,7 @@ function draw() {
     showScore();
     player.update();
     buttons.update();
-    buttons.stats(fallings.length, player.sizeX, chance/10, rebirthScore-1, rebirthScore, chance);
+    buttons.stats(fallings.length, player.sizeX, chance/10, rebirthScore, rebirthScore, chance);
   
     if(cb == true){
         for(i = 0; i < fallings.length; i++){
