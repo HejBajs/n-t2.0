@@ -6,8 +6,11 @@ class Falling{
         this.size = (30);
         this.speed = 5;
         this.specint = int(random(1, 1000));
+        this.superSpecint = int(random(1, 1000000));
         this.special = false;
+        this.superSpecial = false
         this.specialRand();
+        this.colorblind = false;
     }
     
     update(){
@@ -15,9 +18,16 @@ class Falling{
     }
     
     draw(){
+        push();
         fill(this.c);
-        noStroke();
+        if(this.colorblind == true){
+            stroke(255);
+            strokeWeight(4);
+        } else{
+          noStroke();
+        }
         ellipse(this.x, this.y, this.size);
+        pop();
         
         this.y += this.speed;
     }
@@ -29,6 +39,14 @@ class Falling{
                 this.size+=10;
                 this.c = color(255,215,0);
                 this.speed++;
+            }
+        }
+        for(var i = 1; i < chance+1; i++){
+            if(this.superSpecint == i){
+                this.superSpecial = true;
+                this.size+=15;
+                this.c = color(255, 255, 255);
+                this.speed--;
             }
         }
     }
