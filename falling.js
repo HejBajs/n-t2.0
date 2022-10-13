@@ -44,6 +44,7 @@ class Falling{
         for(var i = 1; i < chance+1; i++){
             if(this.superSpecint == i){
                 this.superSpecial = true;
+                this.special = false;
                 this.size+=15;
                 this.c = color(255, 255, 255);
                 this.speed--;
