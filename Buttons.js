@@ -1,6 +1,14 @@
 class Buttons{
     constructor(){
         this.c = color(80);
+        this.c1 = color(80);
+        this.c2 = color(80);
+        this.c3 = color(80);
+        this.c4 = color(80);
+        this.c5 = color(80);
+        this.c6 = color(80);
+        this.c7 = color(80);
+        this.c8 = color(80);
         this.plus = 10;
         this.cost1 = 10;
         this.cost2 = 10;
@@ -13,6 +21,7 @@ class Buttons{
         this.d = this.nFormatter(this.cost4);
         this.d2 = this.nFormatter(this.cost5);
         this.shopIs = false;
+        this.statsIs = false;
     }
     
     update(){
@@ -29,6 +38,42 @@ class Buttons{
         }
         
         this.shop();
+        if(this.statsIs == true && this.shopIs == true){
+            this.statsIs = false;
+        }
+    }
+  
+    stats(balls, size, chance, rebirths, rb, c){
+        if(this.statsIs == true){
+            push();
+            noStroke();
+            fill(55);
+            rect(width/3, 25, width/3, height-50, 25);
+            fill(color(255))
+            textSize(30);
+            text("Balls: " + balls, width/2.5, 360)
+            text("Money per ball: " + nFormatter(this.plus*rb), width/2.5, 210)
+            text("Size: " + size + "px", width/2.5, 260)
+            text("Special: " + chance + "%", width/2.5, 310)
+            push();
+            textAlign(CENTER);
+            text("Super Special: " + c/1000000 + "%", width/2, 160)
+            pop();
+            text("rebirths: " + rebirths, width/2.5, 410)
+            textSize(80);
+            textAlign(CENTER);
+            textStyle(BOLD);
+            text("Stats", width/2, 110)
+            pop();
+        }
+        fill(this.c);
+        rect(5, 5, 35, 35, 3);
+        noStroke();
+        fill(255);
+        textSize(20);
+        rect(10, 23, 7, 14, 3);
+        rect(19, 12, 7, 25, 3);
+        rect(28, 20, 7, 17, 3);
     }
     
     shop(){
@@ -36,18 +81,25 @@ class Buttons{
             noStroke();
             fill(55);
             rect(25, 25, width-50, height-50, 25);
-            fill(this.c);
+            fill(this.c1);
             rect(35, 35, 250, 70, 10);
+            fill(this.c2);
             rect(325, 35, 250, 70, 10);
+            fill(this.c3);
             rect(width-570, 35, 250, 70, 10);
+            fill(this.c4);
             rect(width-285, 35, 250, 70, 10);
+            fill(this.c5);
             rect(35, height-105, 250, 70, 10);
+            fill(this.c6);
             rect(width-285, height-105, 250, 70, 10);
             this.t();
             push();
             fill(this.c);
             rectMode(CENTER);
+            fill(this.c7);
             rect(width/2, height/2, 200, 200, 20);
+            fill(this.c8);
             rect(width/2, height-70, 250, 70, 10);
             fill(255);
             textAlign(CENTER);
