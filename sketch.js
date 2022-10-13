@@ -47,7 +47,7 @@ function draw() {
             if(fallings[i].special==true){
                 score+=((buttons.plus*rebirthScore)*200);
             }else if(fallings[i].superSpecial == true){
-                score+=((buttons.plus*rebirthScore)*10000);
+                score+=((buttons.plus*rebirthScore)*500000);
             }else{
                 score+=(buttons.plus*rebirthScore);
             }
