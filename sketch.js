@@ -3,13 +3,15 @@ let player;
 var score = 0;
 let buttons;
 let chance = 1;
-let v = "V1.9"
+let v = "V1.10"
 var rebirthScore = 1;
 let botmode = false;
 let cheatCode = ['n', 'a', 'l', 'l', 'e', 'p', 'u'];
 let cheatCode2 = ['b', 'g'];
+let cheatCode3 = ['h', 'a', 'n', 'n', 'e', 's', 'm', 'o', 'd', 'e'];
 let keyl = [];
 let bg;
+let cb = false;
 
 document.onkeydown = function(e) {
     if(event.keyCode == 123) {
@@ -44,6 +46,8 @@ function draw() {
         if(collide(player.x, player.y, player.sizeX, player.sizeY, fallings[i].x, fallings[i].y-15)){
             if(fallings[i].special==true){
                 score+=((buttons.plus*rebirthScore)*200);
+            }else if(fallings[i].superSpecial == true){
+                score+=(buttons.plus*rebirthScore*5000);
             }else{
                 score+=(buttons.plus*rebirthScore);
             }
@@ -56,6 +60,17 @@ function draw() {
     showScore();
     player.update();
     buttons.update();
+    buttons.stats(fallings.length, player.sizeX, chance/10, rebirthScore-1, rebirthScore, chance);
+  
+    if(cb == true){
+        for(i = 0; i < fallings.length; i++){
+            fallings[i].colorblind = true;
+        }
+    }else{
+        for(i = 0; i < fallings.length; i++){
+            fallings[i].colorblind = false;
+        }
+    }
     
     if(botmode == true){
         player.x += calcBotPos();
@@ -68,13 +83,22 @@ function draw() {
         }
       
         if(keyl[i] == cheatCode2[0] && keyl[i+1] == cheatCode2[1]){
-            bg = color(random(255), random(255), random(255))
+            bg = color(random(255), random(255), random(255));
             player.c = color(random(255), random(255), random(255));
+            keyl = [];
+        }
+      
+        if(keyl[i] == cheatCode3[0] && keyl[i+1] == cheatCode3[1] && keyl[i+2] == cheatCode3[2] && keyl[i+3] == cheatCode3[3] && keyl[i+4] == cheatCode3[4] && keyl[i+5] == cheatCode3[5] && keyl[i+6] == cheatCode3[6] && keyl[i+7] == cheatCode3[7] && keyl[i+8] == cheatCode3[8] && keyl[i+9] == cheatCode3[9]){
+            if(cb == false){
+                cb = true;
+            } else{
+                cb = false;
+            }
             keyl = [];
         }
     }
     
-    if(keyl[0]!='b' && keyl[0]!='n'){
+    if(keyl[0]!='b' && keyl[0]!='n' && keyl[0]!='h'){
         keyl = [];
     }
 }
@@ -93,8 +117,11 @@ function keyTyped(){
 function showScore(){
     fill(255);
     textSize(50);
+    push();
+    textAlign(CENTER);
     text("$"+nFormatter(score, 1), width/2, 50);
-    text(v, width-120, height-15);
+    pop();
+    text(v, width-140, height-15);
 }
 
 function collide(x, y, w, h, x2, y2){
@@ -113,9 +140,18 @@ function mousePressed(){
             buttons.shopIs = false;
         }
     }
+  
+    if(isMouseInside(5, 5, 40, 40)){
+        if(buttons.statsIs == false){
+            buttons.statsIs = true;
+        }else{
+            buttons.statsIs = false;
+        }
+    }
     
     if(isMouseInside(35, 35, 250, 70) && buttons.shopIs == true){
         if(score >= buttons.cost1){
+            buttons.c1 = color(60)
             fallings.push(new Falling());
             score-=buttons.cost1;
             buttons.cost1*=1.2
@@ -124,6 +160,7 @@ function mousePressed(){
     
     if(isMouseInside(325, 35, 250, 70) && buttons.shopIs == true){
         if(score >= buttons.cost2){
+            buttons.c2 = color(60)
             buttons.plus*=1.25
             score-=buttons.cost2;
             buttons.cost2*=1.3
@@ -132,6 +169,7 @@ function mousePressed(){
     
     if(isMouseInside(width/2+20, 35, 250, 70) && buttons.shopIs == true){
         if(score >= buttons.cost3){
+            buttons.c3 = color(60)
             player.sizeX+=5;
             score-=buttons.cost3;
             buttons.cost3*=2;
@@ -140,6 +178,7 @@ function mousePressed(){
     
     if(isMouseInside(width-285, 35, 250, 70) && buttons.shopIs == true && buttons.hej2 == true){
         if(score >= buttons.cost5){
+            buttons.c4 = color(60)
             chance+=1;
             score-=buttons.cost5;
             buttons.cost5*=2;
@@ -151,6 +190,7 @@ function mousePressed(){
     
     if(isMouseInside((width/2)-(250/2), (height-70)-(70/2), 250, 70) && buttons.shopIs == true && buttons.hej == true){
         if(score >= buttons.cost4){
+            buttons.c8 = color(60)
             player.speed+=3;
             score-=buttons.cost4;
             buttons.cost4*=1000;
@@ -161,12 +201,30 @@ function mousePressed(){
         }
     }
     
-    if(isMouseInside(35, height-105, 250, 70) && buttons.shopIs == true){save1()}
-    if(isMouseInside(width-285, height-105, 250, 70) && buttons.shopIs == true){load1()}
+    if(isMouseInside(35, height-105, 250, 70) && buttons.shopIs == true){
+        save1()
+        buttons.c5 = color(60)
+    }
+    if(isMouseInside(width-285, height-105, 250, 70) && buttons.shopIs == true){
+        load1()
+        buttons.c6 = color(60)
+    }
     
     if(isMouseInside((width/2)-100, (height/2)-100, 200, 200) && buttons.shopIs == true){
         rebirth();
+        buttons.c7 = color(60)
     }
+}
+
+function mouseReleased() {
+    buttons.c1 = color(80);
+    buttons.c2 = color(80);
+    buttons.c3 = color(80);
+    buttons.c4 = color(80);
+    buttons.c5 = color(80);
+    buttons.c6 = color(80);
+    buttons.c7 = color(80);
+    buttons.c8 = color(80);
 }
 
 function rebirth(){
@@ -286,10 +344,11 @@ function calcBotPos(){
     this.d = 0;
     this.min;
     for(var i = 0; i < fallings.length; i++){
-        if(fallings[i].special == true){
+        if(fallings[i].superSpecial == true){
+            this.f1.push(fallings[i]);
+        }else if(fallings[i].special == true){
             this.f1.push(fallings[i]);
         }
-
     }
 
     if(this.f1.length == 0){
