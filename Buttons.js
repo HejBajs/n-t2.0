@@ -22,6 +22,8 @@ class Buttons{
         this.d2 = this.nFormatter(this.cost5);
         this.shopIs = false;
         this.statsIs = false;
+        this.rd = 0;
+        this.x = 0;
     }
     
     update(){
@@ -59,7 +61,7 @@ class Buttons{
             textAlign(CENTER);
             text("Super Special: " + c/1000000 + "%", width/2, 160)
             pop();
-            text("rebirths: " + "den här e buggad just nu", width/2.5, 410)
+            text("rebirths: " + rebirths, width/2.5, 410)
             textSize(80);
             textAlign(CENTER);
             textStyle(BOLD);
