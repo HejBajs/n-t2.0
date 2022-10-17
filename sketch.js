@@ -12,6 +12,8 @@ let cheatCode3 = ['h', 'a', 'n', 'n', 'e', 's', 'm', 'o', 'd', 'e'];
 let keyl = [];
 let bg;
 let cb = false;
+let rb = rebirthScore;
+let rebirths = 0;
 
 document.onkeydown = function(e) {
     if(event.keyCode == 123) {
@@ -41,6 +43,10 @@ function setup() {
 
 function draw() {
     background(bg); 
+  
+    if(rb == rebirthScore){
+        rebirths = 0;
+    }
     for(var i = 0; i < fallings.length; i++){
         fallings[i].update();
         if(collide(player.x, player.y, player.sizeX, player.sizeY, fallings[i].x, fallings[i].y-15)){
@@ -57,10 +63,11 @@ function draw() {
             fallings[i] = new Falling();
         }
     }
+    kuk()
     showScore();
     player.update();
     buttons.update();
-    buttons.stats(fallings.length, player.sizeX, chance/10, rebirthScore, rebirthScore, chance);
+    buttons.stats(fallings.length, player.sizeX, chance/10, rebirths, rebirthScore, chance);
   
     if(cb == true){
         for(i = 0; i < fallings.length; i++){
@@ -122,6 +129,18 @@ function showScore(){
     text("$"+nFormatter(score, 1), width/2, 50);
     pop();
     text(v, width-140, height-15);
+}
+
+function kuk(){
+    if(rebirthScore < 2){
+        rebirths = 0;
+    } else if(rb == 1){
+        return false;
+    }else{
+        rebirths+=1
+        rb = rb/2;
+        print("hej")
+    }
 }
 
 function collide(x, y, w, h, x2, y2){
@@ -247,6 +266,8 @@ function rebirth(){
         buttons.cost5 = 1000000;
         
         rebirthScore*=2;
+        rebirths = 0;
+        rb = rebirthScore;
     }
 }
 
@@ -324,6 +345,8 @@ function load1(){
         }else{
             buttons.cost6 = data.buttons.cost6;
             rebirthScore = data.rebirthScore;
+            rebirths = 0;
+            rb = rebirthScore;
         }
     }catch{
         print("error loading");
