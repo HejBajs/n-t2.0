@@ -19,13 +19,11 @@ class Falling{
     
     draw(){
         push();
-        fill(this.c);
         if(this.colorblind == true){
-            stroke(255);
-            strokeWeight(4);
-        } else{
-          noStroke();
+            fill(255)
+            ellipse(this.x, this.y, this.size+7);
         }
+        fill(this.c);
         ellipse(this.x, this.y, this.size);
         pop();
         
