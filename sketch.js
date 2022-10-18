@@ -134,9 +134,7 @@ function showScore(){
 function kuk(){
     if(rebirthScore < 2){
         rebirths = 0;
-    } else if(rb == 1){
-        return false;
-    }else{
+    } else if(rb != 1){
         rebirths+=1
         rb = rb/2;
         print("hej")
