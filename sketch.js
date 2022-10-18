@@ -229,7 +229,6 @@ function mousePressed(){
     
     if(isMouseInside((width/2)-100, (height/2)-100, 200, 200) && buttons.shopIs == true){
         rebirth();
-        buttons.c7 = color(60)
     }
 }
 
@@ -246,6 +245,7 @@ function mouseReleased() {
 
 function rebirth(){
     if(score >= buttons.cost6){
+        buttons.c7 = color(60);
         score-=buttons.cost6;
         buttons.cost6 *=10000000;
         
