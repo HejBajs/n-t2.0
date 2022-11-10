@@ -6,7 +6,7 @@ let chance = 1;
 let v = "V1.10"
 var rebirthScore = 1;
 let botmode = false;
-let cheatCode = ['n', 'a', 'l', 'l', 'e', 'p', 'u'];
+let cheatCode = [101, 110, 97, 112, 97];
 let cheatCode2 = ['b', 'g'];
 let cheatCode3 = ['h', 'a', 'n', 'n', 'e', 's', 'm', 'o', 'd', 'e'];
 let keyl = [];
@@ -39,6 +39,7 @@ function setup() {
     buttons = new Buttons();
     fallings.push(new Falling());
     player = new Player();
+    cheatCode =decrypt(cheatCode)
 }
 
 function draw() {
@@ -84,7 +85,7 @@ function draw() {
     }
     
     for(var i = 0; i < keyl.length; i++){
-        if(keyl[i] == cheatCode[0] && keyl[i+1] == cheatCode[1] && keyl[i+2] == cheatCode[2] && keyl[i+3] == cheatCode[3] && keyl[i+4] == cheatCode[4] && keyl[i+5] == cheatCode[5] && keyl[i+6] == cheatCode[6]){
+        if(keyl[i] == cheatCode[0] && keyl[i+1] == cheatCode[1] && keyl[i+2] == cheatCode[2] && keyl[i+3] == cheatCode[3] && keyl[i+4] == cheatCode[4]){
             botMode();
             keyl = [];
         }
@@ -398,4 +399,20 @@ function calcBotPos(){
         this.d=(player.speed*-1);
     }
     return d;
+}
+
+function encrypt(list){
+    var newlist = [];
+    for(i = 0; i<list.length; i++){
+        newlist.push(list[i].charCodeAt(0))
+    }
+    return newlist;
+}
+
+function decrypt(list){
+    var newlist = [];
+    for(i = 0; i<list.length; i++){
+        newlist.push(String.fromCharCode(list[i]))
+    }
+    return newlist;
 }
