@@ -106,7 +106,7 @@ function draw() {
         }
     }
     
-    if(keyl[0]!='b' && keyl[0]!='n' && keyl[0]!='h'){
+    if(keyl[0]!='b' && keyl[0]!='e' && keyl[0]!='h'){
         keyl = [];
     }
 }
